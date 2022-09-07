@@ -38,5 +38,5 @@ jobs:
          
       - name: Compile code
         run: |
-          Rscript -e "install.packages('rmarkdown'); rmarkdown::render('analysis/analysis.Rmd')"
+          Rscript -e "install.packages('rmarkdown'); rmarkdown::render('analysis/analysis.Rmd', 'html_document')"
 
