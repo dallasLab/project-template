@@ -53,9 +53,8 @@ jobs:
         run: |
           Rscript -e "install.packages('rmarkdown'); rmarkdown::render('analysis/analysis.Rmd', 'html_document')"
 
-
       - name: Build Distill website
-        run: Rscript -e 'rmarkdown::render_site()'
+        run: Rscript -e 'rmarkdown::render_site("analysis/")'
         
       - name: Deploy on GH-pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
