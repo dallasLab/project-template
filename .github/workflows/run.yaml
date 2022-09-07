@@ -8,10 +8,10 @@ on:
       - main
       - master
 
-name: R-CMD-check
+name: runIt
 
 jobs:
-  R-CMD-check:
+  runIt:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -51,5 +51,3 @@ jobs:
      - name: Compile code
         run: |      
           rmarkdown::render("analysis/analysis.Rmd")
-
-          
