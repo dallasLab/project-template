@@ -35,27 +35,12 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@v1
-         
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        run: |
-          pak::local_system_requirements(execute = TRUE)
-          pak::pkg_system_requirements("pkgdown", execute = TRUE)
-        shell: Rscript {0}
 
-      - name: Install dependencies
-        run: |
-          pak::local_install_dev_deps(upgrade = TRUE)
-          pak::pkg_install("distill")
-        shell: Rscript {0}
 
       - name: Compile code
         run: |
           Rscript -e "install.packages('rmarkdown'); rmarkdown::render('analysis/analysis.Rmd', 'html_document')"
 
-      - name: Build Distill website
-        run: Rscript -e 'rmarkdown::render_site("analysis/")'
-        
       - name: Deploy on GH-pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
