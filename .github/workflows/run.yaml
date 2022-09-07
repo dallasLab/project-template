@@ -37,5 +37,6 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
          
       - name: Compile code
-        run: |      
-          rmarkdown::render("analysis/analysis.Rmd")
+        run: |
+          Rscript -e "install.packages('rmarkdown'); rmarkdown::render('analysis/analysis.Rmd')"
+

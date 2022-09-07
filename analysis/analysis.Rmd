@@ -37,6 +37,10 @@ output:
 
 ```{r}
 
+install.packages('igraph')
+install.packages('plyr')
+install.packages('dplyr')
+
 # data manipulation libraries
 library(igraph)
 library(plyr)
@@ -187,6 +191,16 @@ summary(mod)
 
 
 
+
+
+```{r}
+
+plot(y, x)
+plotSegments(y,x, 
+  legPos='bottomright', textCol='dodgerblue'
+)
+
+```
 
 
 
