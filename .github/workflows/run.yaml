@@ -8,14 +8,10 @@ on:
       - main
       - master
 
-name: runIt
-
 jobs:
-  runIt:
-    runs-on: ${{ matrix.config.os }}
-
+  run_the_thing:
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
+    runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -39,15 +35,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@v1
-      
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-          
-     - name: Compile code
+         
+      - name: Compile code
         run: |      
           rmarkdown::render("analysis/analysis.Rmd")
